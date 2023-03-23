@@ -21,51 +21,50 @@
                                 <rect key="frame" x="16" y="150" width="343" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="JLj-vn-Xaf"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="JLj-vn-Xaf"/>
                                     <constraint firstAttribute="height" constant="50" id="RsR-Tl-AqW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="22"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHN-Te-dGd">
-                                <rect key="frame" x="37.5" y="343" width="300" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="2MT-Kk-1uy"/>
-                                    <constraint firstAttribute="width" constant="300" id="Xob-DN-pDt"/>
-                                </constraints>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Игра против компьютера"/>
-                                <connections>
-                                    <action selector="gameWithOtherUser:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="bHA-Uh-iAS"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efJ-6A-mm0">
                                 <rect key="frame" x="37.5" y="291" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="mKb-E8-bXZ"/>
-                                    <constraint firstAttribute="width" constant="300" id="vP9-Bi-0O7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="vP9-Bi-0O7"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Игра с двумя игроками "/>
                                 <connections>
-                                    <action selector="gameWithComputer:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="hTX-fk-tSf"/>
+                                    <action selector="gameWithOtherUser:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="Oz6-6y-LP5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHN-Te-dGd">
+                                <rect key="frame" x="37.5" y="343" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2MT-Kk-1uy"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Xob-DN-pDt"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Игра против компьютера"/>
+                                <connections>
+                                    <action selector="gameWithComputer:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="67c-6u-UYZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8I-YM-yuo">
                                 <rect key="frame" x="37.5" y="391" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="D5t-dk-MxS"/>
-                                    <constraint firstAttribute="width" constant="300" id="RXx-VU-bG0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="RXx-VU-bG0"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="5 x 5"/>
                                 <connections>
-                                    <action selector="gameFiveToFive:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="9bX-AE-740"/>
-                                    <action selector="gameWithOtherUser:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="GKq-PY-Sm8"/>
+                                    <action selector="gameFiveToFive:" destination="L4M-Qd-lgh" eventType="touchUpInside" id="Jl9-Hs-244"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -84,9 +83,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="computerGame" destination="efJ-6A-mm0" id="1BQ-cs-NxZ"/>
-                        <outlet property="fiveToFiveGame" destination="l8I-YM-yuo" id="LoV-uN-Rld"/>
-                        <outlet property="otherUserGame" destination="WHN-Te-dGd" id="5d0-km-eSN"/>
+                        <outlet property="computerGame" destination="WHN-Te-dGd" id="fWD-WY-J8k"/>
+                        <outlet property="fiveToFiveGame" destination="l8I-YM-yuo" id="ASt-Bh-A7x"/>
+                        <outlet property="otherUserGame" destination="efJ-6A-mm0" id="V7u-aO-vda"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="fromStartVCToGameVC" id="jBi-Ov-p4q"/>
                     </connections>
                 </viewController>

@@ -6,9 +6,9 @@ import UIKit
 
 class StartGameViewController: UIViewController {
     
-    @IBOutlet weak var computerGame: UIButton!
+
     @IBOutlet weak var otherUserGame: UIButton!
-    
+    @IBOutlet weak var computerGame: UIButton!
     @IBOutlet weak var fiveToFiveGame: UIButton!
     // Session
     var gameSession = GameSession.shared
@@ -16,12 +16,13 @@ class StartGameViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func gameWithComputer(_ sender: UIButton) {
+
+    
+    @IBAction func gameWithOtherUser(_ sender: UIButton) {
         gameSession.gameMode = .withUser
         performSegue(withIdentifier: "fromStartVCToGameVC", sender: (Any).self)
     }
-    
-    @IBAction func gameWithOtherUser(_ sender: UIButton) {
+    @IBAction func gameWithComputer(_ sender: UIButton) {
         gameSession.gameMode = .withComputer
         performSegue(withIdentifier: "fromStartVCToGameVC", sender: (Any).self)
     }

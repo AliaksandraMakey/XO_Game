@@ -2,7 +2,7 @@
 
 import Foundation
 
-public class ComputerInputState: GameState {
+public class PlayerInputState: GameState {
     
     public private(set) var isCompleted = false
     public let player: Player
@@ -30,28 +30,20 @@ public class ComputerInputState: GameState {
             self.gameViewController?.firstPlayerTurnLabel.isHidden = false
             self.gameViewController?.secondPlayerTurnLabel.isHidden = true
         case .secondUser:
-                self.gameViewController?.firstPlayerTurnLabel.isHidden = true
-                self.gameViewController?.secondPlayerTurnLabel.isHidden = false
+            self.gameViewController?.firstPlayerTurnLabel.isHidden = true
+            self.gameViewController?.secondPlayerTurnLabel.isHidden = false
         }
         self.gameViewController?.winnerLabel.isHidden = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.gameboardView?.onSelectPosition?(self.getRandomAvailablePosition()!)}
     }
     
     public func addMark(at position: GameboardPosition) {
         Log(.playerInput(player: self.player, position: position))
-            guard let gameboardView = self.gameboardView,
-                  gameboardView.canPlaceMarkView(at: position) else { return }
-            self.gameboard?.setPlayer(self.player, at: position)
-            self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position, false)
-            self.isCompleted = true
+        guard let gameboardView = self.gameboardView,
+              gameboardView.canPlaceMarkView(at: position) else { return }
+        self.gameboard?.setPlayer(self.player, at: position)
+        self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position, false)
+        self.isCompleted = true
     }
     
-    private func getRandomAvailablePosition() -> GameboardPosition? {
-        let availablePositions = self.gameboard?.getAvailablePositions()
-//TODO: добавить комбинации для улучшения игрока computer
-        let randomIndex = Int.random(in: 0..<availablePositions!.count)
-        return availablePositions![randomIndex]
-    }
+ 
 }
-

@@ -19,7 +19,7 @@ class GameViewController: UIViewController {
     }
     
     private lazy var referee = Referee(gameboard: self.gameboard)
-    
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.goToFirstState()
@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
             }
         }
     }
-  
+    
     @IBAction func restartButtonTapped(_ sender: UIButton) {
         gameboard.clear()
         self.reloadViewFromNib()
@@ -43,20 +43,29 @@ extension GameViewController {
     
     private func goToFirstState() {
         let player = Player.firstUser
-        self.currentState = FirstPlayerInputState(player: player,
-                                             markViewPrototype: player.markViewPrototype,
-                                             gameViewController: self,
-                                             gameboard: gameboard,
-                                             gameboardView: gameboardView)
+        if gameSession.gameMode == .fiveToFive {
+            self.currentState = PlayerFromFiveToFiveInputState(player: player,
+                                                           markViewPrototype: player.markViewPrototype,
+                                                           gameViewController: self,
+                                                           gameboard: gameboard,
+                                                           gameboardView: gameboardView)
+        } else {
+            self.currentState = PlayerInputState(player: player,
+                                                 markViewPrototype: player.markViewPrototype,
+                                                 gameViewController: self,
+                                                 gameboard: gameboard,
+                                                 gameboardView: gameboardView)
+        }
+        
     }
     
     private func goToNextState() {
-        //TODO: перенести логику из контроллера + пофиксить
-        if let winner = self.referee.determineWinner() {
-            self.currentState = GameEndedState(winner: winner, gameViewController: self)
-            return
-        }
-        if let playerInputState = currentState as? FirstPlayerInputState {
+        // TODO: перенести логику из контроллера + пофиксить
+        if let playerInputState = currentState as? PlayerInputState {
+            if let winner = self.referee.determineWinner() {
+                self.currentState = GameEndedState(winner: winner, gameViewController: self)
+                return
+            }
             let player = playerInputState.player.next
             if gameSession.gameMode == .withComputer {
                 self.currentState = ComputerInputState(player: player,
@@ -64,35 +73,49 @@ extension GameViewController {
                                                        gameViewController: self,
                                                        gameboard: gameboard,
                                                        gameboardView: gameboardView)
+                return
             } else {
-                self.currentState = SecondPlayerInputState(player: player,
+                self.currentState = PlayerInputState(player: player,
+                                                     markViewPrototype: player.markViewPrototype,
+                                                     gameViewController: self,
+                                                     gameboard: gameboard,
+                                                     gameboardView: gameboardView)
+                return
+                
+            }
+        }
+        
+        if let computerInputState = currentState as? ComputerInputState {
+            let player = computerInputState.player.next
+            self.currentState = PlayerInputState(player: player,
+                                                 markViewPrototype: player.markViewPrototype,
+                                                 gameViewController: self,
+                                                 gameboard: gameboard,
+                                                 gameboardView: gameboardView)
+            return
+        }
+        
+        if let playerInputState = currentState as? PlayerFromFiveToFiveInputState {
+            let player = playerInputState.player.next
+            if gameboard.arrayPositionsForPlayer[.firstUser]?.count == 5 &&
+                gameboard.arrayPositionsForPlayer[.secondUser]?.count == 5 {
+                self.currentState = DrawFiveToFiveState(player: player,
+                                                               markViewPrototype: player.markViewPrototype,
+                                                               gameViewController: self,
+                                                               gameboard: gameboard,
+                                                               gameboardView: gameboardView)
+                if let winner = self.referee.determineWinner() {
+                    self.currentState = GameEndedState(winner: winner, gameViewController: self)
+                    return
+                }
+                return
+            }
+            self.currentState = PlayerFromFiveToFiveInputState(player: player,
                                                            markViewPrototype: player.markViewPrototype,
                                                            gameViewController: self,
                                                            gameboard: gameboard,
                                                            gameboardView: gameboardView)
-            }
-            return
-        }
-        if gameSession.gameMode == .withComputer {
-            if let computerInputState = currentState as? ComputerInputState {
-                let player = computerInputState.player.next
-                self.currentState = FirstPlayerInputState(player: player,
-                                                          markViewPrototype: player.markViewPrototype,
-                                                          gameViewController: self,
-                                                          gameboard: gameboard,
-                                                          gameboardView: gameboardView)
-            }
-        } else {
-            if let computerInputState = currentState as? SecondPlayerInputState {
-                let player = computerInputState.player.next
-                self.currentState = FirstPlayerInputState(player: player,
-                                                          markViewPrototype: player.markViewPrototype,
-                                                          gameViewController: self,
-                                                          gameboard: gameboard,
-                                                          gameboardView: gameboardView)
-            }
             return
         }
     }
 }
-

@@ -7,11 +7,12 @@ public final class Gameboard {
     // MARK: - Properties
     
     lazy var positions: [[Player?]] = initialPositions()
+    var arrayPositionsForPlayer = [Player: [GameboardPosition]]()
     
     // MARK: - public
     
     public func setPlayer(_ player: Player, at position: GameboardPosition) {
-        positions[position.column][position.row] = player
+            positions[position.column][position.row] = player
     }
     
     public func clear() {
@@ -32,9 +33,11 @@ public final class Gameboard {
         let (column, row) = (position.column, position.row)
         return positions[column][row] == player
     }
-    
+    // проверить, есть ли количество меток от этого пользователя
+    func checkCountOfMarksFromPlayer(_ checkPlayer: Player, count: Int) -> Bool {
+        return count <= self.arrayPositionsForPlayer[checkPlayer]?.count ?? 0
+    }
     // MARK: - Private
-    
     private func initialPositions() -> [[Player?]] {
         var positions: [[Player?]] = []
         for _ in 0 ..< GameboardSize.columns {

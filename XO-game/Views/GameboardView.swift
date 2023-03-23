@@ -8,9 +8,9 @@ public class GameboardView: UIView {
     // MARK: - Public Properties
     
     public var onSelectPosition: ((GameboardPosition) -> Void)?
-    
+    var board = Gameboard()
     var markViewForPosition: [GameboardPosition: MarkView] = [:]
-    
+
     // MARK: - Constants
     
     internal struct Constants {
@@ -41,11 +41,21 @@ public class GameboardView: UIView {
         return markViewForPosition[position] == nil
     }
     
-    public func placeMarkView(_ markView: MarkView, at position: GameboardPosition) {
-        guard self.canPlaceMarkView(at: position) else { return }
-        updateFrame(for: markView, at: position)
-        markViewForPosition[position] = markView
-        addSubview(markView)
+    public func placeMarkView(_ markView: MarkView, at position: GameboardPosition, _ needReplace: Bool) {
+        if !needReplace {
+            guard self.canPlaceMarkView(at: position) else { return }
+            updateFrame(for: markView, at: position)
+            markViewForPosition[position] = markView
+            addSubview(markView)
+        } else {
+            if !canPlaceMarkView(at: position) {
+                removeMarkView(at: position)
+            }
+            updateFrame(for: markView, at: position)
+            markViewForPosition[position] = markView
+            addSubview(markView)
+        }
+        
     }
     
     public func removeMarkView(at position: GameboardPosition) {
