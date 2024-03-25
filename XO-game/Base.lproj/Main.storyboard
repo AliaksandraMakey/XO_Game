@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L4M-Qd-lgh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L4M-Qd-lgh">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите режим игры" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDy-G1-pS6">
-                                <rect key="frame" x="16" y="150" width="343" height="50"/>
+                                <rect key="frame" x="16" y="170" width="343" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="JLj-vn-Xaf"/>
@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efJ-6A-mm0">
-                                <rect key="frame" x="37.5" y="291" width="300" height="40"/>
+                                <rect key="frame" x="37.5" y="311" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="mKb-E8-bXZ"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="vP9-Bi-0O7"/>
@@ -44,7 +44,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHN-Te-dGd">
                                 <rect key="frame" x="37.5" y="343" width="300" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="2MT-Kk-1uy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="2MT-Kk-1uy"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Xob-DN-pDt"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +78,7 @@
                             <constraint firstItem="mDy-G1-pS6" firstAttribute="top" secondItem="9UZ-eh-mfL" secondAttribute="top" constant="150" id="XfW-zD-Njt"/>
                             <constraint firstItem="mDy-G1-pS6" firstAttribute="centerX" secondItem="9UZ-eh-mfL" secondAttribute="centerX" id="Z4P-YF-tbo"/>
                             <constraint firstItem="WHN-Te-dGd" firstAttribute="centerX" secondItem="9UZ-eh-mfL" secondAttribute="centerX" id="g1k-4A-OZg"/>
-                            <constraint firstItem="WHN-Te-dGd" firstAttribute="top" secondItem="efJ-6A-mm0" secondAttribute="bottom" constant="12" id="htg-ku-N8A"/>
+                            <constraint firstItem="WHN-Te-dGd" firstAttribute="top" relation="lessThanOrEqual" secondItem="efJ-6A-mm0" secondAttribute="bottom" constant="12" id="htg-ku-N8A"/>
                             <constraint firstItem="efJ-6A-mm0" firstAttribute="top" secondItem="mDy-G1-pS6" secondAttribute="bottom" constant="91" id="yqC-a0-Wqp"/>
                         </constraints>
                     </view>
